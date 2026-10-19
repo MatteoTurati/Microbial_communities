@@ -96,25 +96,25 @@ loglog(frac_lin_x, frac_lin_y, 'k-', 'LineWidth', 1.5)
 hold on
 
 loglog(Ratio_1_12, Ratio_2_12, ...
-    'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 12)
+    'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 14)
 
-text(Ratio_1_12*0.60, Ratio_2_12, 'S12', ...
+text(Ratio_1_12*0.53, Ratio_2_12, 'S12', ...
     'FontWeight', 'bold', ...
-    'FontSize', 14)
+    'FontSize', 18)
 
 loglog(Ratio_1_13, Ratio_3_13, ...
-    'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 12)
+    'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 14)
 
-text(Ratio_1_13, Ratio_3_13*1.23, 'S13', ...
+text(Ratio_1_13, Ratio_3_13*1.30, 'S13', ...
     'FontWeight', 'bold', ...
-    'FontSize', 14)
+    'FontSize', 18)
 
 loglog(Ratio_2_23, Ratio_3_23, ...
-    'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 12)
+    'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 14)
 
 text(Ratio_2_23, Ratio_3_23*1.28, 'S23', ...
     'FontWeight', 'bold', ...
-    'FontSize', 14)
+    'FontSize', 18)
 
 ax = gca;
 
@@ -180,16 +180,17 @@ CV3_23 = Time_S23.BL_CV(Time_S23.Time == 48);
 
 X = [X1_1 X2_2 X3_3 X1_12 X2_12 X1_13 X3_13 X2_23 X3_23];
 CV = [CV1_1 CV2_2 CV3_3 CV1_12 CV2_12 CV1_13 CV3_13 CV2_23 CV3_23];
-               
+
+rng(1, 'twister')
 Xpert = lognormal_noise(X, CV, dim);
      
 % Plot: one color per co-culture (S12 orange, S13 blue, S23 magenta)
 % dark = stable
 % light = unstable 
-c12 = [0.902 0.494 0.133];  c13 = [0.000 0.447 0.698];  c23 = [0.800 0.247 0.604];
+c12 = [0.927 0.621 0.350];  c13 = [0.250 0.585 0.776];  c23 = [0.800 0.247 0.604];
 
 dark  = @(c) c*0.85;                
-light = @(c) c + (1-c)*0.45;      
+light = @(c) c + (1-c)*0.60;      
 
 frac_lin_x = linspace(5e-6, 1-5e-6, 100000);
 frac_lin_y = 1 - frac_lin_x;
@@ -264,10 +265,9 @@ for cc=1:dim
 
  end
         
-plot(axtot, Ratio_1_12, Ratio_2_12, 'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 12) 
-text(axtot, Ratio_1_12*0.62, Ratio_2_12, 'S12', 'FontWeight', 'bold', 'FontSize', 14)
-plot(axtot, Ratio_1_13, Ratio_3_13,  'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 12) 
-text(axtot, Ratio_1_13, Ratio_3_13*1.35, 'S13', 'FontWeight', 'bold', 'FontSize', 14)
-plot(axtot, Ratio_2_23, Ratio_3_23,  'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 12)
-text(axtot,Ratio_2_23, Ratio_3_23*1.35, 'S23', 'FontWeight', 'bold', 'FontSize', 14)
-
+plot(axtot, Ratio_1_12, Ratio_2_12, 'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 14) 
+text(axtot, Ratio_1_12*0.53, Ratio_2_12, 'S12', 'FontWeight', 'bold', 'FontSize', 18)
+plot(axtot, Ratio_1_13, Ratio_3_13,  'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 14) 
+text(axtot, Ratio_1_13*6.8, Ratio_3_13*2.38, 'S13', 'FontWeight', 'bold', 'FontSize', 18)
+plot(axtot, Ratio_2_23, Ratio_3_23,  'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 14)
+text(axtot,Ratio_2_23, Ratio_3_23*1.30, 'S23', 'FontWeight', 'bold', 'FontSize', 18)
