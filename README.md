@@ -1,6 +1,6 @@
 # Stability-aware gLV identification of a synthetic microbial community
 
-MATLAB code to reproduce the figures of the paper.
+MATLAB code to reproduce the figures of the paper 'Revealing microbial interactions in an *in vitro* reconstructed human gut community through stability-constrained Lotka-Volterra modeling'.
 
 ## Requirements
 
@@ -19,9 +19,9 @@ MATLAB code to reproduce the figures of the paper.
 ├── fig2_fig8_stability_plane.m
 ├── fig3to7_dynamics_heatmap.m
 ├── figS_pairwise_robustness.m
-├── Ode_community.m            gLV right-hand side
-├── stability.m                feasibility and stability of an equilibrium
-└── lognormal_noise.m          lognormal perturbation of stationary data
+├── Ode_community.m            function: gLV model
+├── stability.m                function: evaluate feasibility and stability of an equilibrium
+└── lognormal_noise.m          function: perform lognormal perturbation of stationary data
 ```
 
 ## Usage
@@ -50,5 +50,5 @@ In `fig2_fig8_stability_plane.m`, `dim` sets the number of perturbed datasets (3
 
 Strains: 1 LP (*L. plantarum*), 2 LA (*L. acidophilus*), 3 BL (*B. animalis* subsp. *lactis*), 4 CO (*C. orbiscindens*), 5 CS (*C. symbiosum*), 6 BC (*B. cellulosilyticus*), 7 EC (*E. coli*).
 
-gLV model: dx_i/dt = x_i (r_i + Σ_j a_ij x_j − γ_i x_i), where `A(i,j)` is the effect of strain j on strain i.
+gLV model dx_i/dt = x_i (r_i + Σ_j a_ij x_j − γ_i x_i), where r_i is the intrinsic growth rate, a_ij is the effect of strain j on strain i and γ_i is the self-regulation term
 
