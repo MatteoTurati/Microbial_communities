@@ -29,8 +29,8 @@ TimeM_X1_S12 = S_cocolture.Measurements(S_cocolture.Co_colture == 'LP vs LA' & S
 TimeM_X2_S12 = S_cocolture.Measurements(S_cocolture.Co_colture == 'LP vs LA' & S_cocolture.Species == 'LA');
 TimeS_X1_S12 = S_cocolture.SE(S_cocolture.Co_colture == 'LP vs LA' & S_cocolture.Species == 'LP');
 TimeS_X2_S12 = S_cocolture.SE(S_cocolture.Co_colture == 'LP vs LA' & S_cocolture.Species == 'LA');
-SD_X1_S12 = TimeS_X1_S12 .* sqrt(3);
-SD_X2_S12 = TimeS_X2_S12 .* sqrt(3);
+SD_X1_S12 = TimeS_X1_S12 .* sqrt(2);
+SD_X2_S12 = TimeS_X2_S12 .* sqrt(2);
 CV_X1_S12 = SD_X1_S12 ./ TimeM_X1_S12;
 CV_X2_S12 = SD_X2_S12 ./ TimeM_X2_S12;
 Time_S12 = table(Time, TimeM_X1_S12, TimeS_X1_S12, SD_X1_S12, CV_X1_S12, TimeM_X2_S12, TimeS_X2_S12, SD_X2_S12, CV_X2_S12,  ...
@@ -40,8 +40,8 @@ TimeM_X1_S13 = S_cocolture.Measurements(S_cocolture.Co_colture == 'LP vs BL' & S
 TimeM_X3_S13 = S_cocolture.Measurements(S_cocolture.Co_colture == 'LP vs BL' & S_cocolture.Species == 'BL');
 TimeS_X1_S13 = S_cocolture.SE(S_cocolture.Co_colture == 'LP vs BL' & S_cocolture.Species == 'LP');
 TimeS_X3_S13 = S_cocolture.SE(S_cocolture.Co_colture == 'LP vs BL' & S_cocolture.Species == 'BL');
-SD_X1_S13 = TimeS_X1_S13 .* sqrt(3);
-SD_X3_S13 = TimeS_X3_S13 .* sqrt(3);
+SD_X1_S13 = TimeS_X1_S13 .* sqrt(2);
+SD_X3_S13 = TimeS_X3_S13 .* sqrt(2);
 CV_X1_S13 = SD_X1_S13 ./ TimeM_X1_S13;
 CV_X3_S13 = SD_X3_S13 ./ TimeM_X3_S13;
 Time_S13 = table(Time, ...
@@ -55,8 +55,8 @@ TimeM_X2_S23 = S_cocolture.Measurements(S_cocolture.Co_colture == 'LA vs BL' & S
 TimeM_X3_S23 = S_cocolture.Measurements(S_cocolture.Co_colture == 'LA vs BL' & S_cocolture.Species == 'BL');
 TimeS_X2_S23 = S_cocolture.SE(S_cocolture.Co_colture == 'LA vs BL' & S_cocolture.Species == 'LA');
 TimeS_X3_S23 = S_cocolture.SE(S_cocolture.Co_colture == 'LA vs BL' & S_cocolture.Species == 'BL');
-SD_X2_S23 = TimeS_X2_S23 .* sqrt(3);
-SD_X3_S23 = TimeS_X3_S23 .* sqrt(3);
+SD_X2_S23 = TimeS_X2_S23 .* sqrt(2);
+SD_X3_S23 = TimeS_X3_S23 .* sqrt(2);
 CV_X2_S23 = SD_X2_S23 ./ TimeM_X2_S23;
 CV_X3_S23 = SD_X3_S23 ./ TimeM_X3_S23;
 Time_S23 = table(Time, ...
@@ -72,7 +72,7 @@ Time_S23 = table(Time, ...
 
 S_mono_pro = S_monocolture((S_monocolture.Time == '48 h') & (ismember(S_monocolture.Species, ["LP", "LA", "BL"])), :);
 
-S_mono_pro.SD = S_mono_pro.SE .* sqrt(3);
+S_mono_pro.SD = S_mono_pro.SE .* sqrt(2);
 S_mono_pro.CV = S_mono_pro.SD ./ S_mono_pro.Measurements; 
 
 Ratio_1_12 = Time_S12.LP_mean(Time_S12.Time == 48) / S_mono_pro.Measurements(S_mono_pro.Species == 'LP');
