@@ -146,7 +146,7 @@ hold off
 %% PERTURBED DATASETS GENERATION - FIGURE 2
 % dim lognormal realizations of the stationary data (CV from measurements)
 
-dim = 3000; % Number of generated datasets
+dim = 5000; % Number of generated datasets
 
 %LP
 X1_1 = S_mono_pro.Measurements(S_mono_pro.Species == 'LP');
@@ -271,3 +271,36 @@ plot(axtot, Ratio_1_13, Ratio_3_13,  'ko', 'MarkerFaceColor', 'b', 'MarkerSize',
 text(axtot, Ratio_1_13*6.8, Ratio_3_13*2.38, 'S13', 'FontWeight', 'bold', 'FontSize', 18)
 plot(axtot, Ratio_2_23, Ratio_3_23,  'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 14)
 text(axtot,Ratio_2_23, Ratio_3_23*1.30, 'S23', 'FontWeight', 'bold', 'FontSize', 18)
+
+% ARROW
+hS13 = findobj(axtot, 'Type', 'text', 'String', 'S13');
+posS13 = hS13.Position;
+
+x = [Ratio_1_13, posS13(1)];
+y = [Ratio_3_13, posS13(2)];
+
+drawnow;
+axtot.Units = 'normalized';
+p = axtot.Position;
+
+xl = log10(axtot.XLim);
+yl = log10(axtot.YLim);
+
+xf = p(1) + p(3) * (log10(x) - xl(1)) / diff(xl);
+yf = p(2) + p(4) * (log10(y) - yl(1)) / diff(yl);
+
+xf(2) = xf(1) + 0.93 * (xf(2) - xf(1));
+yf(2) = yf(1) + 0.93 * (yf(2) - yf(1));
+
+spostamentoVerticale = -0.028; 
+avanzamento = 0.066;     
+
+dx = xf(2) - xf(1);
+dy = yf(2) - yf(1);
+
+xf = xf + avanzamento*dx;
+yf = yf + avanzamento*dy + spostamentoVerticale;
+
+annotation(figTOT, 'arrow', xf, yf, ...
+    'Color', 'k', 'LineWidth', 1.2, ...
+    'HeadLength', 7, 'HeadWidth', 7);
